@@ -1,9 +1,6 @@
 # library R packages------------------------------------------------------------
 library("readxl")
-library("writexl")
 library("tidyverse")
-library("ggpmisc")
-library("forcats")
 library("vegan")
 library("vcd")
 library("car")

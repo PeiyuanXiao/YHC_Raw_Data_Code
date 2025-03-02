@@ -1,8 +1,6 @@
 # Library R packages------------------------------------------------------------
 library("readxl")
-library("writexl")
 library("tidyverse")
-library("ggplot2")
 library("patchwork")
 library("hexbin")
 
@@ -537,11 +535,26 @@ ggplot(tool_types_raw_phase, aes(y = Typology,
        size = "Count") +
   theme_minimal() +
   plot_theme_1 + 
-  theme(strip.text = element_blank(), 
-        axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "none"
+  facet_wrap(~ `Cultural phase`, ncol = 3) + 
+  theme(
+    strip.text = element_blank(), 
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom",          
+    legend.box = "horizontal",           
+    legend.spacing.x = unit(0.5, "cm"),  
+    legend.box.just = "center",          
+    legend.margin = margin(t = 0, b = 0)
   ) +
-  facet_wrap(~ `Cultural phase`, ncol = 3) 
+  guides(
+    fill = guide_legend(
+      nrow = 1,
+      override.aes = list(shape = 21, size = 4) 
+    ),
+    size = guide_legend(
+      nrow = 1,
+      override.aes = list(shape = 21, fill = "white")  
+    )
+  )
 
 # save file
 ggsave(filename = "Tool types divided by phase.png", width = 7, height = 6, 
