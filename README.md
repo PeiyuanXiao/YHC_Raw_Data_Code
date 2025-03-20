@@ -1,7 +1,7 @@
-# **Research Compendium for: "**Early evidence of *Homo sapiens* cultural complexity in southern China at 43,000 years ago**"**
+# **Research Compendium for: "**Earliest miniaturized stone tools and cultural innovations by *Homo sapiens* in southern China**"**
 
-Hao Li<sup>1,2†</sup>, Guang-Mao Xie<sup>3,4✉</sup>, Da-Wei Li<sup>5✉</sup>, Pei-Yuan Xiao<sup>1,2†</sup>, 
-Luc Doyon<sup>6†</sup>, Daniela Eugenia Rosso<sup>7†</sup>, Davide Delpiano<sup>8</sup>, Qiang Lin<sup>4</sup>, 
+Hao Li<sup>1,2</sup>, Guang-Mao Xie<sup>3,4✉</sup>, Da-Wei Li<sup>5✉</sup>, Pei-Yuan Xiao<sup>1,2</sup>, 
+Luc Doyon<sup>6</sup>, Daniela Eugenia Rosso<sup>7</sup>, Davide Delpiano<sup>8</sup>, Qiang Lin<sup>4</sup>, 
 Yu-Qing Wang<sup>1,2</sup>, San-Ling Li<sup>9</sup>, Guang-Chao Zhou<sup>5</sup>, Hong-Bo Chen<sup>3</sup>, 
 Zhen-Xiu Jia<sup>1</sup>, Shuai Zhang<sup>1</sup>, Zhi-Yong Yang<sup>1,2</sup>, Qing-Yi Chen<sup>1,2</sup>, 
 Pei-Ming Peng<sup>1,2</sup>, Elham Fotuhil<sup>1,2</sup>, Pian-Pian Wei<sup>10,11,12</sup>, Yao-Wu Hu<sup>10</sup>, 
@@ -27,8 +27,6 @@ Ben Marwick<sup>17✉</sup>, Francesco d’Errico<sup>6,18✉</sup>
 *16 MOE Key Laboratory of Western China’s Environmental System, Lanzhou University, Lanzhou, China;*  
 *17 Department of Anthropology, University of Washington, Seattle, USA;*  
 *18 17SFF Centre for Early Sapiens Behaviour (SapienCE), University of Bergen, Bergen, Norway.*  
-
-<b><sup>†</sup>These authors contributed equally:</b> Hao Li, Pei-Yuan Xiao, Luc Doyon, Daniela Eugenia Rosso, Pian-Pian Wei
 
 ✉ Correspondence: Hao Li [lihao\@itpcas.ac.cn](mailto:lihao@itpcas.ac.cn)
 
@@ -70,13 +68,6 @@ Guang-mao Xie [xgmxie92\@sina.com](mailto:xgmxie92@sina.com)
 
 Hao Li [lihao\@itpcas.ac.cn](mailto:lihao@itpcas.ac.cn)
 
-### Abstract:
-
-The dispersal and cultural evolution of *Homo sapiens* in eastern Asia have been the focus of extensive research, yet the timing, technological adaptations, and migration dynamics in southern China remain poorly understood. Here we present findings from Yahuai Cave, a newly investigated site, preserving a cultural sequence spanning \~43,000–14,000 years ago, offering one of the longest known records of Late Pleistocene human occupations in the region. The lithic assemblage, dating to \~43,000 years ago, represents the earliest systematically miniaturized stone tool industry in East Asia, characterized by backed tools, bipolar reduction, and tektite knapping. Complex behaviors, including ochre processing, grinding stones, and freshwater shell tools, appear \~43,000–34,000 years ago, followed by fully shaped bone tools and bored stones \~26,000–21,000 years ago. A modern human skull (\~16,000 years ago) confirms the presence of *Homo sapiens* at the site. The Yahuai Cave record reveals both cultural continuity and technological innovation, challenging the notion that a simple cobble-tool industry persisted in southern China until the end of the Pleistocene. Instead, these findings align the region with broader technological trends in South and Southeast Asia. The early emergence of this cultural package suggests that *Homo sapiens* arrived in southern China by at least \~43,000 years ago, likely via a southern dispersal pathway. Similarities with other sites hint at cultural exchanges within East Asia, emphasizing the need to propose a *Dual Pathway Model* of early human expansion to better capture the complexity of Homo sapiens dispersals in the region.
-
-### Keywords:
-
-Southern dispersal pathway, *Homo sapiens*, Upper Paleolithic, Complex behaviors, Dual Pathway Model
 
 ### R packages and their versions:
 
