@@ -1,5 +1,13 @@
-.Rproj.user
+*.png
+*.jpg
+*.jpeg
+*.tiff
+
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
-.png
+.Rapp.history
+
+*.tmp
+.DS_Store
