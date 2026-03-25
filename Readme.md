@@ -12,7 +12,7 @@
 
 This repository contains the data and code for our submitted manuscript:
 
-> Li, H.<sup>*†*</sup>, Xie, G. M.<sup></sup>, Li, D. W.<sup></sup>, **Xiao, P. Y.**<sup>†</sup> [<img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" alt="ORCID iD" width="16" height="16"/>](https://orcid.org/0009-0000-9733-5875), Doyon, L.<sup>†</sup>, Rosso, D. E.<sup>†</sup>, Wei, P. P.<sup>†</sup>, et al. (2025). A structured behavioural repertoire in southern China from 43,000 years ago\*. (Submitted manuscript).
+> Li, H.<sup>*†*</sup>, Xie, G. M.<sup></sup>, Li, D. W.<sup></sup>, Xiao, P. Y.<sup>†</sup> [<img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" alt="ORCID iD" width="16" height="16"/>](https://orcid.org/0009-0000-9733-5875), Doyon, L.<sup>†</sup>, Rosso, D. E.<sup>†</sup>, Wei, P. P.<sup>†</sup>, et al. (2025). A structured behavioural repertoire in southern China from 43,000 years ago\*. (Submitted manuscript).
 
 ------------------------------------------------------------------------
 
