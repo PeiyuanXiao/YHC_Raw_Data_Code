@@ -696,3 +696,51 @@ leveneTest(`Retouch length Index` ~ `Cultural phase`, data = YHDDATA_tools)
 KW_result <- kruskal.test(`Retouch length Index`~ `Cultural phase`, 
                           data = YHDDATA_tools)
 print(KW_result)
+
+# FINAL SUMMARY OF ANALYSIS RESULTS---------------------------------------------
+cat(
+  "\n======================================================================\n",
+  "                 LITHIC ANALYSIS SUMMARY REPORT\n",
+  "======================================================================\n\n",
+  
+  "1. SIZE ANALYSIS (PERMANOVA by Raw Material Groups)\n",
+  "--------------------------------------------------\n",
+  "Phase 1 Size PERMANOVA p-value: ", permanova_results_lc_p1$`Pr(>F)`[1], "\n",
+  "Phase 2 Size PERMANOVA p-value: ", permanova_results_lc_p2$`Pr(>F)`[1], "\n",
+  "Phase 3 Size PERMANOVA p-value: ", permanova_results_lc_p3$`Pr(>F)`[1], "\n\n",
+  
+  "2. RAW MATERIAL & TECHNIQUE CORRELATIONS (Chi-square)\n",
+  "--------------------------------------------------\n",
+  "Phase 1: p =", chi_test_P1$p.value, " (Cramer's V =", cramers_v_P1, ")\n",
+  "Phase 2: p =", chi_test_P2$p.value, " (Cramer's V =", cramers_v_P2, ")\n",
+  "Phase 3: p =", chi_test_P3$p.value, " (Cramer's V =", cramers_v_P3, ")\n\n",
+  
+  "3. CORE CHARACTERISTICS ACROSS PHASES\n",
+  "--------------------------------------------------\n",
+  "Core Typology (de la Torre) Chi-sq p-value: ", chisq.test(contingency_table_core_type)$p.value, "\n",
+  "Core Cortex (Kruskal-Wallis) p-value   : ", kruskal.test(Cortex ~ `Cultural phase`, data = SANDCORE_CORTEX)$p.value, "\n",
+  "Core Platform Angle (ANOVA) p-value    : ", summary(anov_result)[[1]][["Pr(>F)"]][1], "\n",
+  "Core Scar Count (Kruskal-Wallis) p-value: ", kruskal.test(`N(Scars)`~ `Cultural phase`, data = SANDCORE_SCAR)$p.value, "\n\n",
+  
+  "4. FLAKING TECHNIQUE (TQCC Group)\n",
+  "--------------------------------------------------\n",
+  "Technique distribution across Phases p-value: ", chisq.test(contingency_table_technique)$p.value, "\n\n",
+  
+  "5. PCA OF FLAKE MORPHOLOGY\n",
+  "--------------------------------------------------\n",
+  "Total Variance Explained (PC1+PC2): ", round(sum(explained_variance[1:2]), 2), "%\n",
+  "PERMANOVA of PCA Scores by Phase p-value: ", permanova_results_pca$`Pr(>F)`[1], "\n\n",
+  
+  "6. TOOL COMPARISONS ACROSS PHASES\n",
+  "--------------------------------------------------\n",
+  "Tool Typology Chi-sq p-value       : ", chisq.test(contingency_table_tool_type)$p.value, "\n",
+  "Tool Blank Chi-sq p-value          : ", chisq.test(contingency_table_tool)$p.value, "\n",
+  "Number of Edges (KW) p-value       : ", kruskal.test(`N(Edge)`~ `Cultural phase`, data = YHDDATA_tools)$p.value, "\n",
+  "Edge Angle (KW) p-value            : ", kruskal.test(`X̄(Edge angle)`~ `Cultural phase`, data = YHDDATA_tools)$p.value, "\n",
+  "Retouch Generation (KW) p-value    : ", kruskal.test(`Retouch generation`~ `Cultural phase`, data = YHDDATA_tools)$p.value, "\n",
+  "Retouch Length Index (KW) p-value  : ", kruskal.test(`Retouch length Index`~ `Cultural phase`, data = YHDDATA_tools)$p.value, "\n",
+  
+  "======================================================================\n",
+  "                          END OF REPORT\n",
+  "======================================================================\n"
+)
