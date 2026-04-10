@@ -20,7 +20,7 @@ This repository contains the data and code for our submitted manuscript:
 
 **Hao Li**<sup>1,2†\*</sup>, **Guang-Mao Xie**<sup>3,4\*</sup>, **Da-Wei Li**<sup>5\*</sup>, **Pei-Yuan Xiao**<sup>1,2†</sup>[<img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16"/>](https://orcid.org/0009-0000-9733-5875), **Luc Doyon**<sup>6†</sup>, **Daniela Eugenia Rosso**<sup>7†</sup>, **Davide Delpiano**<sup>8</sup>, **Qiang Lin**<sup>4</sup>, **Yu-Qing Wang**<sup>1,2</sup>, **San-Ling Li**<sup>9</sup>, **Guang-Chao Zhou**<sup>5</sup>, **Hong-Bo Chen**<sup>3</sup>, **Zhen-Xiu Jia**<sup>1</sup>, **Shuai Zhang**<sup>1</sup>, **Zhi-Yong Yang**<sup>1,2</sup>, **Qing-Yi Chen**<sup>1,2</sup>, **Pei-Ming Peng**<sup>1,2</sup>, **Elham Fotuhi**<sup>1,2</sup>, **Pian-Pian Wei**<sup>10,11†</sup>, **Yao-Wu Hu**<sup>10</sup>, **Zhang-Hua Hu**<sup>12</sup>, **Ying Xie**<sup>13</sup>, **Yu-He Shen**<sup>14</sup>, **Jia-Fu Zhang**<sup>14</sup>, **Bo Li**<sup>15,16</sup>, **Qing-Feng Shao**<sup>17</sup>, **Gui-Lan Hu**<sup>17</sup>, **Christopher J. Bae**<sup>18</sup>, **Marco Peresani**<sup>8,19</sup>, **Fa-Hu Chen**<sup>1,2,20</sup>, **Ben Marwick**<sup>21\*</sup>, **Francesco d’Errico**<sup>6,22\*</sup>
 
-<sup>†</sup> *These authors contributed equally to this work.* <sup></sup> Corresponding authors.\*
+<sup>†</sup> These authors contributed equally to this work. <sup>\*</sup> Corresponding authors.
 
 **Affiliations:**
 
@@ -57,7 +57,7 @@ This repository provides all necessary materials to reproduce the results found 
 
 -   **Main Analysis:** R scripts located in the root directory.
 -   **Datasets:** Includes metrics for stone artifacts, ochre, and <sup>14</sup>C dating data.
--   The **3D models** (.stl) can be accessed via the OSF repo at [https://osf.io/yr5wh/](https://www.google.com/url?sa=E&source=gmail&q=https://osf.io/yr5wh/).
+-   The **3D models** (.stl) can be accessed via the OSF repo at <https://osf.io/yr5wh/>.
 
 ------------------------------------------------------------------------
 
@@ -200,7 +200,9 @@ The following PNG files will be saved to the working directory at 800 dpi:
 | `Technological attributes plots of core.png` | Jitter + boxplots of core cortex, flaking angle, and scar number across phases |
 | `Technological attributes plots of flake.png` | Jitter + boxplots of tool edge number, edge angle, retouch generation, and retouch length index across phases |
 
-### 🔧 Maintainers
+------------------------------------------------------------------------
+
+### 📧 Maintainers
 
 -   **Pei-yuan Xiao** ([xiaopeiyuan\@itpcas.ac.cn](mailto:xiaopeiyuan@itpcas.ac.cn))
 -   **Ben Marwick** ([bmarwick\@uw.edu](mailto:bmarwick@uw.edu))
@@ -208,3 +210,9 @@ The following PNG files will be saved to the working directory at 800 dpi:
 -   **Hao Li** ([lihao\@itpcas.ac.cn](mailto:lihao@itpcas.ac.cn))
 
 For questions about adapting the code, please contact the maintainers listed above.
+
+------------------------------------------------------------------------
+
+### ⚖️ License
+
+This project is covered under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** License.
