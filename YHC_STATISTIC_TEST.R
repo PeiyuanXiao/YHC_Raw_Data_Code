@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # library R packages------------------------------------------------------------
 library("readxl")
 library("tidyverse")
@@ -1542,4 +1541,3 @@ leveneTest(`Retouch length Index` ~ `Cultural phase`, data = YHDDATA_tools)
 KW_result <- kruskal.test(`Retouch length Index`~ `Cultural phase`, 
                           data = YHDDATA_tools)
 print(KW_result)
->>>>>>> 8b24ebe0afc5216ce72a8a572d3899a58f5a1736
