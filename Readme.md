@@ -60,9 +60,144 @@ This repository provides all necessary materials to reproduce the results found 
 
 ------------------------------------------------------------------------
 
-### 💻 Computational Environment
+### 💻 System Requirements
 
--   **R Packages:** `tidyverse`, `readxl`, `vegan`, `car`, `MVN`, `vcd`, `patchwork`, `hexbin`, `ggExtra`.
+### Software Dependencies
+
+**R version:** R ≥ 4.5.2 (tested on R 4.5.2)
+
+**Required R packages and versions (as used in this study):**
+
+| Package     | Version | Purpose                                                |
+|-------------|---------|--------------------------------------------------------|
+| `tidyverse` | 2.0.0   | Data manipulation and visualization framework          |
+| `readxl`    | 1.4.5   | Reading Excel data files                               |
+| `vegan`     | 2.7-2   | Community ecology ordination (PCA, PERMANOVA, etc.)    |
+| `car`       | 3.1-3   | Companion to Applied Regression (Levene's test, ANOVA) |
+| `MVN`       | 6.3     | Multivariate normality tests                           |
+| `vcd`       | 1.4-13  | Visualizing categorical data                           |
+| `patchwork` | 1.3.2   | Composing multi-panel ggplot2 figures                  |
+| `hexbin`    | 1.28.5  | Hexagonal binning for scatter plots                    |
+| `ggExtra`   | 0.11.0  | Marginal plots for ggplot2                             |
+| `FSA`       | 0.10.1  | Dunn's post-hoc test after Kruskal-Wallis              |
+
+All package dependencies are managed via `renv` and recorded in `renv.lock`. Running `renv::restore()` will install all packages at the exact versions used in this study.
+
+### Operating System
+
+Tested on **Windows 11** (64-bit). The code is expected to run on macOS and Linux as well, as all packages are cross-platform.
+
+### Hardware Requirements
+
+Non-standard hardware is not required. All analyses can be run on a standard desktop or laptop computer.
+
+## 🔧 Installation Guide
+
+### Step 1: Install R and RStudio
+
+1.  Download and install **R ≥ 4.5.2** from <https://cran.r-project.org/>
+2.  Download and install **RStudio Desktop** (recommended) from <https://posit.co/download/rstudio-desktop/>
+
+### Step 2: Clone or Download this Repository
+
+``` bash
+git clone https://github.com/PeiyuanXiao/YHC_Raw_Data_Code.git 
+```
+
+Or download and unzip the repository from the repository page.
+
+### Step 3: Restore the R Environment
+
+This repository uses [`renv`](https://rstudio.github.io/renv/) for reproducible package management. Open the project in RStudio (double-click the `YHC_LITHIC_RAW_DATA.Rproj` file), then run:
+
+``` r
+# Install renv if not already installed
+install.packages("renv")
+ 
+# Restore all packages to the exact versions used in this study
+renv::restore()
+```
+
+**Typical install time:** 1-2 minutes on a standard desktop computer (first-time installation; subsequent restores are faster due to the renv cache).
+
+------------------------------------------------------------------------
+
+## 🎯 Demo
+
+### Running the Demo Script
+
+A self-contained demo script (`run_demo.R`) is provided to verify that your environment is correctly configured and to illustrate the core analytical workflow using a small example dataset (`demo_data.xlsx`).
+
+### Expected Output
+
+Upon successful execution, `run_demo.R` will produce:
+
+-   **Console progress messages:** Four step-by-step messages confirming each analysis stage:
+    -   `Step 1: Running PERMANOVA...`
+    -   `Step 2: Running Chi-square Test...`
+    -   `Step 3: Running Kruskal-Wallis Test...`
+    -   `Step 4: Generating PCA & Saving Plot...`
+-   **A printed summary report** in the console
+
+### Expected Run Time
+
+**\< 1 minute** on a standard desktop computer.
+
+------------------------------------------------------------------------
+
+## 📖 Instructions for Use
+
+### File Overview
+
+| File | Description |
+|----|----|
+| `YHC_LITHIC_RAW_DATA.xlsx` | Primary dataset |
+| `YHC_STATISTIC_TEST.R` | All statistical tests reported in the manuscript & SI |
+| `YHC_PLOTS.R` | All figures reported in the manuscript & SI |
+
+### Reproducing the Statistical Results
+
+Ensure `YHC_LITHIC_RAW_DATA.xlsx` and `YHC_STATISTIC_TEST.R` are in the same working directory, then run:
+
+``` r
+source("YHC_STATISTIC_TEST.R")
+```
+
+Results are printed to the console. The script runs six analytical modules in sequence and ends with a consolidated summary report:
+
+```         
+======================================================================
+                 LITHIC ANALYSIS SUMMARY REPORT
+======================================================================
+1. SIZE ANALYSIS (PERMANOVA by Raw Material Groups)        — Phases 1, 2, 3
+2. RAW MATERIAL & TECHNIQUE CORRELATIONS (Chi-square)      — Phases 1, 2, 3
+3. CORE CHARACTERISTICS ACROSS PHASES                      — Typology, cortex, platform angle, scar count
+4. FLAKING TECHNIQUE                                       — Phase distribution
+5. PCA OF FLAKE ATTRIBUTIONS                               — Variance explained, PERMANOVA on PCA scores
+6. TOOL COMPARISONS ACROSS PHASES                          — Typology, blank, edge number/angle, retouch
+======================================================================
+```
+
+### Reproducing the Figures
+
+Ensure `YHC_LITHIC_RAW_DATA.xlsx` and `YHC_PLOTS.R` are in the same working directory, then run:
+
+``` r
+source("YHC_PLOTS.R")
+```
+
+The following PNG files will be saved to the working directory at 800 dpi:
+
+| Output file | Content |
+|----|----|
+| `Size Raw material divided by Phase.png` | Boxplots of core, flake, and tool size by raw material and cultural phase |
+| `Size hexbin plot.png` | Hexbinplots of knapped stone artifacts length |
+| `CT & DSP divided by phase.png` | Bubbleplots of core (types) and flake (dorsal scar patterns) by cultural phase |
+| `Tool types divided by phase.png` | Bubbleplots of tool (types) by cultural phase |
+| `PCA.png` | PCA biplot of complete flake with marginal density curves, coloured by cultural phase |
+| `Proportion of technique.png` | Stacked bar charts of bipolar vs. percussion technique by raw material, across three phases |
+| `Technological attributes plots of core.png` | Jitter + boxplots of core cortex, flaking angle, and scar number across phases |
+| `Technological attributes plots of flake.png` | Jitter + boxplots of tool edge number, edge angle, retouch generation, and retouch length index across phases |
 
 ### 🔧 Maintainers
 
@@ -70,3 +205,5 @@ This repository provides all necessary materials to reproduce the results found 
 -   **Ben Marwick** ([bmarwick\@uw.edu](mailto:bmarwick@uw.edu))
 -   **Guang-mao Xie** ([xgmxie92\@sina.com](mailto:xgmxie92@sina.com))
 -   **Hao Li** ([lihao\@itpcas.ac.cn](mailto:lihao@itpcas.ac.cn))
+
+For questions about adapting the code, please contact the maintainers listed above.
