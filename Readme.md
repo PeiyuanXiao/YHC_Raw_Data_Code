@@ -56,7 +56,8 @@ This repository contains the data and code for our submitted manuscript:
 This repository provides all necessary materials to reproduce the results found in the manuscript.
 
 -   **Main Analysis:** R scripts located in the root directory.
--   **Datasets:** Includes metrics for stone artifacts, ochre, 3D models (.stl), and <sup>14</sup>C dating data.
+-   **Datasets:** Includes metrics for stone artifacts, ochre, and <sup>14</sup>C dating data.
+-   The **3D models** (.stl) can be accessed via the OSF repo at [https://osf.io/yr5wh/](https://www.google.com/url?sa=E&source=gmail&q=https://osf.io/yr5wh/).
 
 ------------------------------------------------------------------------
 
@@ -69,7 +70,7 @@ This repository provides all necessary materials to reproduce the results found 
 **Required R packages and versions (as used in this study):**
 
 | Package     | Version | Purpose                                                |
-|-------------|---------|--------------------------------------------------------|
+|----------------------|-------------------------|-------------------------|
 | `tidyverse` | 2.0.0   | Data manipulation and visualization framework          |
 | `readxl`    | 1.4.5   | Reading Excel data files                               |
 | `vegan`     | 2.7-2   | Community ecology ordination (PCA, PERMANOVA, etc.)    |
@@ -104,7 +105,7 @@ Non-standard hardware is not required. All analyses can be run on a standard des
 git clone https://github.com/PeiyuanXiao/YHC_Raw_Data_Code.git 
 ```
 
-Or download and unzip the repository from the repository page.
+Alternatively, download and unzip the repository from GitHub at [this link,](https://github.com/PeiyuanXiao/YHC_Raw_Data_Code) or access it via OSF (<https://osf.io/yr5wh/>).
 
 ### Step 3: Restore the R Environment
 
@@ -150,7 +151,7 @@ Upon successful execution, `run_demo.R` will produce:
 ### File Overview
 
 | File | Description |
-|----|----|
+|-------------------------|-----------------------------------------------|
 | `YHC_LITHIC_RAW_DATA.xlsx` | Primary dataset |
 | `YHC_STATISTIC_TEST.R` | All statistical tests reported in the manuscript & SI |
 | `YHC_PLOTS.R` | All figures reported in the manuscript & SI |
@@ -189,7 +190,7 @@ source("YHC_PLOTS.R")
 The following PNG files will be saved to the working directory at 800 dpi:
 
 | Output file | Content |
-|----|----|
+|------------------------------------------|------------------------------|
 | `Size Raw material divided by Phase.png` | Boxplots of core, flake, and tool size by raw material and cultural phase |
 | `Size hexbin plot.png` | Hexbinplots of knapped stone artifacts length |
 | `CT & DSP divided by phase.png` | Bubbleplots of core (types) and flake (dorsal scar patterns) by cultural phase |
