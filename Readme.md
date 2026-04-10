@@ -195,7 +195,6 @@ The following PNG files will be saved to the working directory at 800 dpi:
 | `Size hexbin plot.png` | Hexbinplots of knapped stone artifacts length |
 | `CT & DSP divided by phase.png` | Bubbleplots of core (types) and flake (dorsal scar patterns) by cultural phase |
 | `Tool types divided by phase.png` | Bubbleplots of tool (types) by cultural phase |
-| `PCA.png` | PCA biplot of complete flake with marginal density curves, coloured by cultural phase |
 | `Proportion of technique.png` | Stacked bar charts of bipolar vs. percussion technique by raw material, across three phases |
 | `Technological attributes plots of core.png` | Jitter + boxplots of core cortex, flaking angle, and scar number across phases |
 | `Technological attributes plots of flake.png` | Jitter + boxplots of tool edge number, edge angle, retouch generation, and retouch length index across phases |
