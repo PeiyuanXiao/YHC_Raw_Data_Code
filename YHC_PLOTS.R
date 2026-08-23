@@ -4,6 +4,9 @@ library("tidyverse")
 library("patchwork")
 library("hexbin")
 
+# Reproducibility---------------------------------------------------------------
+set.seed(2226)
+
 # Read raw data-----------------------------------------------------------------
 YHDDATA_cores <- 
   read_excel("YHC_LITHIC_RAW_DATA.xlsx", sheet = 1) %>%
@@ -96,16 +99,6 @@ raw_materials_order <- c(
                          "Tektite"
                          )
 
-# for smooth
-custom_smooth <- geom_smooth(aes(group = 1), 
-                             method = "lm", 
-                             color = "black", 
-                             fill = "#AFAD8E",
-                             linetype = "dashed", 
-                             size = 0.5,
-                             alpha = 0.3, 
-                             se = T)
-
 # for theme
 plot_theme_1 <- theme(
   panel.background = element_blank(),
@@ -134,7 +127,6 @@ SCR1 <- ggplot(core_size, aes(x = `Raw material`,
   geom_boxplot(position = position_dodge(width = 0.85, preserve = "single"),
                outlier.color = "darkgray",
                outlier.size = 1) + 
-  custom_smooth +
   scale_color_manual(values = cultural_phase_colors) +
   scale_fill_manual(values = cultural_phase_colors) +
   scale_x_discrete(limits = raw_materials_order) +
@@ -151,7 +143,6 @@ SCR2 <- ggplot(core_size, aes(x = `Raw material`,
   geom_boxplot(position = position_dodge(width = 0.85, preserve = "single"),
                outlier.color = "darkgray",
                outlier.size = 1) +
-  custom_smooth +
   scale_color_manual(values = cultural_phase_colors) +
   scale_fill_manual(values = cultural_phase_colors) +
   scale_x_discrete(limits = raw_materials_order) +
@@ -161,13 +152,12 @@ SCR2 <- ggplot(core_size, aes(x = `Raw material`,
   theme(plot.title = element_text(hjust = 0.5, vjust = 0.5, size = 14))
 
 SCR3 <- ggplot(core_size, aes(x = `Raw material`, 
-                              y = `B`, 
+                              y = `Th`, 
                               fill = `Cultural phase`, 
                               color = `Cultural phase`)) + 
   geom_boxplot(position = position_dodge(width = 0.85, preserve = "single"),
                outlier.color = "darkgray",
                outlier.size = 1) +
-  custom_smooth +
   scale_color_manual(values = cultural_phase_colors, 
                      labels = c("Phase 1", "Phase 2", "Phase 3")) +
   scale_fill_manual(values = cultural_phase_colors, 
@@ -202,7 +192,6 @@ SFR1 <- ggplot(flake_size, aes(x = `Raw material`,
   geom_boxplot(position = position_dodge(width = 0.85, preserve = "single"),
                outlier.color = "darkgray",
                outlier.size = 1) +
-  custom_smooth +
   scale_color_manual(values = cultural_phase_colors) +
   scale_fill_manual(values = cultural_phase_colors) +
   scale_x_discrete(limits = raw_materials_order) +
@@ -218,7 +207,6 @@ SFR2 <- ggplot(flake_size, aes(x = `Raw material`,
   geom_boxplot(position = position_dodge(width = 0.85, preserve = "single"),
                outlier.color = "darkgray",
                outlier.size = 1) +
-  custom_smooth +
   scale_color_manual(values = cultural_phase_colors) +
   scale_fill_manual(values = cultural_phase_colors) +
   scale_x_discrete(limits = raw_materials_order) +
@@ -233,7 +221,6 @@ SFR3 <- ggplot(flake_size, aes(x = `Raw material`,
   geom_boxplot(position = position_dodge(width = 0.85, preserve = "single"),
                outlier.color = "darkgray",
                outlier.size = 1) +
-  custom_smooth +
   scale_color_manual(values = cultural_phase_colors) +
   scale_fill_manual(values = cultural_phase_colors) +
   scale_x_discrete(limits = raw_materials_order) +
@@ -257,7 +244,6 @@ ST1 <- ggplot(size_tool, aes(x = `Raw material`,
   geom_boxplot(position = position_dodge(width = 0.85, preserve = "single"),
                outlier.color = "darkgray",
                outlier.size = 1) +
-  custom_smooth +
   scale_color_manual(values = cultural_phase_colors) +
   scale_fill_manual(values = cultural_phase_colors) +
   scale_x_discrete(limits = raw_materials_order) +
@@ -273,7 +259,6 @@ ST2 <- ggplot(size_tool, aes(x = `Raw material`,
   geom_boxplot(position = position_dodge(width = 0.85, preserve = "single"),
                outlier.color = "darkgray",
                outlier.size = 1) +
-  custom_smooth +
   scale_color_manual(values = cultural_phase_colors) +
   scale_fill_manual(values = cultural_phase_colors) +
   scale_x_discrete(limits = raw_materials_order) +
@@ -288,7 +273,6 @@ ST3 <- ggplot(size_tool, aes(x = `Raw material`,
   geom_boxplot(position = position_dodge(width = 0.85, preserve = "single"),
                outlier.color = "darkgray",
                outlier.size = 1) +
-  custom_smooth +
   scale_color_manual(values = cultural_phase_colors) +
   scale_fill_manual(values = cultural_phase_colors) +
   scale_x_discrete(limits = raw_materials_order) +
@@ -472,7 +456,7 @@ ggplot(scar_pattern, aes(y = `Direction of scars`,
                          color = `Cultural phase`)) +
   geom_point(shape = 21) +
   scale_size_continuous(range = c(2, 10)) +
-  scale_x_discrete(limits = c("Unidirection-proximal", 
+  scale_y_discrete(limits = c("Unidirection-proximal", 
                               "Lateral", 
                               "Unidirection-distal", 
                               "Orthogonal", 
@@ -521,8 +505,7 @@ ggplot(tool_types_raw_phase, aes(y = Typology,
                                  color = `Cultural phase`)) +
   geom_point(shape = 21) +
   scale_size_continuous(range = c(2, 10)) +
-  scale_x_discrete(limits = c("Backed tool", 
-                              "Scraper", 
+  scale_y_discrete(limits = c("Scraper", 
                               "Notch", 
                               "Denticulate",
                               "Borer", 
@@ -610,7 +593,7 @@ ggplot(Flaking_technique_2, aes(x = `Raw material`, fill = Technique)) +
 
 # Phase 3
 Flaking_technique_3 <- Flaking_technique %>%
-  filter(`Cultural phase` == "2") 
+  filter(`Cultural phase` == "3") 
 
 tp3 <-
 ggplot(Flaking_technique_3, aes(x = `Raw material`, fill = Technique)) +

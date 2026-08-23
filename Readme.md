@@ -123,29 +123,6 @@ renv::restore()
 
 ------------------------------------------------------------------------
 
-## 🎯 Demo
-
-### Running the Demo Script
-
-A self-contained demo script (`run_demo.R`) is provided to verify that your environment is correctly configured and to illustrate the core analytical workflow using a small example dataset (`demo_data.xlsx`).
-
-### Expected Output
-
-Upon successful execution, `run_demo.R` will produce:
-
--   **Console progress messages:** Four step-by-step messages confirming each analysis stage:
-    -   `Step 1: Running PERMANOVA...`
-    -   `Step 2: Running Chi-square Test...`
-    -   `Step 3: Running Kruskal-Wallis Test...`
-    -   `Step 4: Generating PCA & Saving Plot...`
--   **A printed summary report** in the console
-
-### Expected Run Time
-
-**\< 1 minute** on a standard desktop computer.
-
-------------------------------------------------------------------------
-
 ## 📖 Instructions for Use
 
 ### File Overview

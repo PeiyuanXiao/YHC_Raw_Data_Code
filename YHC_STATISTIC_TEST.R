@@ -7,6 +7,10 @@ library("car")
 library("MVN") 
 library("ggExtra")
 library("FSA")
+
+# Reproducibility---------------------------------------------------------------
+set.seed(2226)
+
 # read raw data-----------------------------------------------------------------
 YHDDATA_cores <- 
   read_excel("YHC_LITHIC_RAW_DATA.xlsx", sheet = 1) %>%
@@ -103,11 +107,26 @@ mvn_result_lc_p1 <- mvn(
 print(mvn_result_lc_p1$multivariateNormality)
 
 # PERMANOVA test
+# The four metric variables are log10-transformed, then standardised, before
+# the Euclidean distances are computed. Untransformed, mass spans 4.5 orders of
+# magnitude against 1.3 for the linear dimensions and would contribute ~90% of
+# the total variance; the log also equalises the multivariate dispersion of the
+# two raw-material groups. This matches the treatment of the flake PCA below.
+size_p1 <- scale(log10(as.matrix(permanova_p1[ , c("L", "B", "Th", "W")])))
+
 permanova_results_lc_p1 <- adonis2(
-  permanova_p1[ , c("L", "B", "Th", "W")] ~ `Raw material`, 
+  size_p1 ~ `Raw material`, 
   data = permanova_p1, 
-  method = "euclidean")
+  method = "euclidean", 
+  permutations = 9999)
 print(permanova_results_lc_p1)
+
+# Homogeneity of multivariate dispersion: the assumption PERMANOVA actually
+# makes. A non-significant result confirms that the group difference reported
+# above reflects location, not spread.
+betadisper_p1 <- betadisper(dist(size_p1), 
+                            factor(permanova_p1$`Raw material`))
+print(permutest(betadisper_p1, permutations = 9999))
 
 # PERMANOVA of lithic size in phase 2-------------------------------------------
 integration <- function(data) {
@@ -141,11 +160,22 @@ mvn_result_lc_p2 <- mvn(
 print(mvn_result_lc_p2$multivariateNormality)
 
 # PERMANOVA test
+# Transformed as in phase 1: log10, then standardised.
+size_p2 <- scale(log10(as.matrix(permanova_p2[ , c("L", "B", "Th", "W")])))
+
 permanova_results_lc_p2 <- adonis2(
-  permanova_p2[ , c("L", "B", "Th", "W")] ~ `Raw material`, 
+  size_p2 ~ `Raw material`, 
   data = permanova_p2, 
-  method = "euclidean")
+  method = "euclidean", 
+  permutations = 9999)
 print(permanova_results_lc_p2)
+
+# Homogeneity of multivariate dispersion: the assumption PERMANOVA actually
+# makes. A non-significant result confirms that the group difference reported
+# above reflects location, not spread.
+betadisper_p2 <- betadisper(dist(size_p2), 
+                            factor(permanova_p2$`Raw material`))
+print(permutest(betadisper_p2, permutations = 9999))
 
 # PERMANOVA of lithic size in phase 3-------------------------------------------
 integration <- function(data) {
@@ -179,11 +209,22 @@ mvn_result_lc_p3 <- mvn(
 print(mvn_result_lc_p3$multivariateNormality)
 
 # PERMANOVA test
+# Transformed as in phase 1: log10, then standardised.
+size_p3 <- scale(log10(as.matrix(permanova_p3[ , c("L", "B", "Th", "W")])))
+
 permanova_results_lc_p3 <- adonis2(
-  permanova_p3[ , c("L", "B", "Th", "W")] ~ `Raw material`, 
+  size_p3 ~ `Raw material`, 
   data = permanova_p3, 
-  method = "euclidean")
+  method = "euclidean", 
+  permutations = 9999)
 print(permanova_results_lc_p3)
+
+# Homogeneity of multivariate dispersion: the assumption PERMANOVA actually
+# makes. A non-significant result confirms that the group difference reported
+# above reflects location, not spread.
+betadisper_p3 <- betadisper(dist(size_p3), 
+                            factor(permanova_p3$`Raw material`))
+print(permutest(betadisper_p3, permutations = 9999))
 
 # Correlation between raw material and technique--------------------------------
 # Phase 1
@@ -235,8 +276,12 @@ contingency_table_P1 <- table(Raw_technique_combined$Technique,
 cramers_v_P1 <- assocstats(contingency_table_P1)$cramer
 print(cramers_v_P1)
 
-chi_test_P1 <- chisq.test(contingency_table_P1)
-print(chi_test_P1)
+# Fisher's exact test. For a 2 x 2 table R returns the exact hypergeometric
+# p-value and the simulate.p.value flag has no effect; the argument is kept
+# so that every categorical test in this script uses the same call form.
+fisher_test_P1 <- fisher.test(contingency_table_P1, 
+                              simulate.p.value = TRUE, B = 9999)
+print(fisher_test_P1)
 
 # Phase 2
 integration <- function(data) {
@@ -287,8 +332,9 @@ contingency_table_P2 <- table(Raw_technique_combined$Technique,
 cramers_v_P2 <- assocstats(contingency_table_P2)$cramer
 print(cramers_v_P2)
 
-chi_test_P2 <- chisq.test(contingency_table_P2)
-print(chi_test_P2)
+fisher_test_P2 <- fisher.test(contingency_table_P2, 
+                              simulate.p.value = TRUE, B = 9999)
+print(fisher_test_P2)
 
 # Phase 3
 integration <- function(data) {
@@ -339,8 +385,9 @@ contingency_table_P3 <- table(Raw_technique_combined$Technique,
 cramers_v_P3 <- assocstats(contingency_table_P3)$cramer
 print(cramers_v_P3)
 
-chi_test_P3 <- chisq.test(contingency_table_P3)
-print(chi_test_P3)
+fisher_test_P3 <- fisher.test(contingency_table_P3, 
+                              simulate.p.value = TRUE, B = 9999)
+print(fisher_test_P3)
 
 # test for core type------------------------------------------------------------
 GROUP_1_CORE_TYPO  <- YHDDATA_cores %>%
@@ -355,8 +402,12 @@ contingency_table_core_type <-
   table(GROUP_1_CORE_TYPO$`de la Torre Typology`, 
         GROUP_1_CORE_TYPO$"Cultural phase")
 
-# Chi-square test
-chisq.test(contingency_table_core_type)
+# Fisher's exact test with a Monte Carlo p-value: 25 of the 30 cells in this
+# 10 x 3 table have an expected count below 5, so the chi-square approximation
+# is not reliable.
+fisher_test_core_type <- fisher.test(contingency_table_core_type, 
+                                     simulate.p.value = TRUE, B = 9999)
+print(fisher_test_core_type)
 
 # test for core cortex----------------------------------------------------------
 SANDCORE_CORTEX <-
@@ -454,8 +505,10 @@ nrow(GROUP_1_CORE_TYPO)
 contingency_table_technique <- table(Flaking_technique_TQCC$`Cultural phase`, 
                                      Flaking_technique_TQCC$Technique)
 
-# Chi-square test
-chisq.test(contingency_table_technique)
+# Fisher's exact test with a Monte Carlo p-value
+fisher_test_technique <- fisher.test(contingency_table_technique, 
+                                     simulate.p.value = TRUE, B = 9999)
+print(fisher_test_technique)
 
 # PCA for flake size and shape across three phases------------------------------
 flake_size_shape <- 
@@ -603,7 +656,8 @@ print(mvn_result_pca$multivariateNormality)
 permanova_results_pca <- adonis2(
   flake_size_shape[ , c("PC1", "PC2")] ~ `Cultural phase`, 
   data = flake_size_shape, 
-  method = "manhattan")
+  method = "manhattan", 
+  permutations = 9999)
 print(permanova_results_pca)
 
 # Tool compared among 3 phases--------------------------------------------------
@@ -613,8 +667,9 @@ contingency_table_tool_type <- table(YHDDATA_tools$Typology,
 
 nrow(YHDDATA_tools)
 
-chisq_result_1 <- chisq.test(contingency_table_tool_type)
-chisq_result_1
+fisher_test_tool_type <- fisher.test(contingency_table_tool_type, 
+                                     simulate.p.value = TRUE, B = 9999)
+print(fisher_test_tool_type)
 
 # test for blank----------------------------------------------------------------
 contingency_table_tool <- table(YHDDATA_tools$Blank, 
@@ -622,8 +677,9 @@ contingency_table_tool <- table(YHDDATA_tools$Blank,
 
 nrow(YHDDATA_tools)
 
-chisq_result_1 <- chisq.test(contingency_table_tool)
-chisq_result_1
+fisher_test_tool_blank <- fisher.test(contingency_table_tool, 
+                                      simulate.p.value = TRUE, B = 9999)
+print(fisher_test_tool_blank)
 
 # test for edge number----------------------------------------------------------
 # Shapiro-Wilk test
@@ -709,22 +765,22 @@ cat(
   "Phase 2 Size PERMANOVA p-value: ", permanova_results_lc_p2$`Pr(>F)`[1], "\n",
   "Phase 3 Size PERMANOVA p-value: ", permanova_results_lc_p3$`Pr(>F)`[1], "\n\n",
   
-  "2. RAW MATERIAL & TECHNIQUE CORRELATIONS (Chi-square)\n",
+  "2. RAW MATERIAL & TECHNIQUE CORRELATIONS (Fisher's exact)\n",
   "--------------------------------------------------\n",
-  "Phase 1: p =", chi_test_P1$p.value, " (Cramer's V =", cramers_v_P1, ")\n",
-  "Phase 2: p =", chi_test_P2$p.value, " (Cramer's V =", cramers_v_P2, ")\n",
-  "Phase 3: p =", chi_test_P3$p.value, " (Cramer's V =", cramers_v_P3, ")\n\n",
+  "Phase 1: p =", fisher_test_P1$p.value, " (Cramer's V =", cramers_v_P1, ")\n",
+  "Phase 2: p =", fisher_test_P2$p.value, " (Cramer's V =", cramers_v_P2, ")\n",
+  "Phase 3: p =", fisher_test_P3$p.value, " (Cramer's V =", cramers_v_P3, ")\n\n",
   
   "3. CORE CHARACTERISTICS ACROSS PHASES\n",
   "--------------------------------------------------\n",
-  "Core Typology (de la Torre) Chi-sq p-value: ", chisq.test(contingency_table_core_type)$p.value, "\n",
+  "Core Typology (de la Torre) Fisher p-value: ", fisher_test_core_type$p.value, "\n",
   "Core Cortex (Kruskal-Wallis) p-value   : ", kruskal.test(Cortex ~ `Cultural phase`, data = SANDCORE_CORTEX)$p.value, "\n",
   "Core Platform Angle (ANOVA) p-value    : ", summary(anov_result)[[1]][["Pr(>F)"]][1], "\n",
   "Core Scar Count (Kruskal-Wallis) p-value: ", kruskal.test(`N(Scars)`~ `Cultural phase`, data = SANDCORE_SCAR)$p.value, "\n\n",
   
   "4. FLAKING TECHNIQUE (TQCC Group)\n",
   "--------------------------------------------------\n",
-  "Technique distribution across Phases p-value: ", chisq.test(contingency_table_technique)$p.value, "\n\n",
+  "Technique distribution across Phases p-value: ", fisher_test_technique$p.value, "\n\n",
   
   "5. PCA OF FLAKE MORPHOLOGY\n",
   "--------------------------------------------------\n",
@@ -733,8 +789,8 @@ cat(
   
   "6. TOOL COMPARISONS ACROSS PHASES\n",
   "--------------------------------------------------\n",
-  "Tool Typology Chi-sq p-value       : ", chisq.test(contingency_table_tool_type)$p.value, "\n",
-  "Tool Blank Chi-sq p-value          : ", chisq.test(contingency_table_tool)$p.value, "\n",
+  "Tool Typology (Fisher) p-value     : ", fisher_test_tool_type$p.value, "\n",
+  "Tool Blank (Fisher) p-value        : ", fisher_test_tool_blank$p.value, "\n",
   "Number of Edges (KW) p-value       : ", kruskal.test(`N(Edge)`~ `Cultural phase`, data = YHDDATA_tools)$p.value, "\n",
   "Edge Angle (KW) p-value            : ", kruskal.test(`X̄(Edge angle)`~ `Cultural phase`, data = YHDDATA_tools)$p.value, "\n",
   "Retouch Generation (KW) p-value    : ", kruskal.test(`Retouch generation`~ `Cultural phase`, data = YHDDATA_tools)$p.value, "\n",
